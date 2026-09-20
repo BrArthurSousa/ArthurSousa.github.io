@@ -1,0 +1,599 @@
+:root {
+    --bg-dark: #05060a;
+    --bg-accent: #0d1117;
+    --primary: #ffcc00; /* Amarelo Trânsito */
+    --success: #2ecc71; /* Verde */
+    --danger: #e74c3c;  /* Vermelho */
+    --text-light: #f0f6fc;
+    --text-dim: #8b949e;
+    --glass: rgba(255, 255, 255, 0.03);
+    --glass-border: rgba(255, 255, 255, 0.1);
+    --transition: all 0.4s cubic-bezier(0.165, 0.84, 0.44, 1);
+}
+
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    font-family: 'Poppins', sans-serif;
+    background-color: var(--bg-dark);
+    color: var(--text-light);
+    overflow-x: hidden;
+    scroll-behavior: smooth;
+}
+
+/* --- FUNDO CINEMATOGRÁFICO --- */
+.city-background {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    z-index: -1;
+    background: radial-gradient(circle at 50% 100%, #1a1c2c 0%, #05060a 100%);
+    overflow: hidden;
+}
+
+.road-lines {
+    position: absolute;
+    top: 0;
+    left: 50%;
+    transform: translateX(-50%);
+    width: 2px;
+    height: 100%;
+    background: repeating-linear-gradient(
+        to bottom,
+        transparent,
+        transparent 50px,
+        rgba(255, 255, 255, 0.1) 50px,
+        rgba(255, 255, 255, 0.1) 100px
+    );
+    animation: roadMove 2s linear infinite;
+}
+
+@keyframes roadMove {
+    from { background-position: 0 0; }
+    to { background-position: 0 100px; }
+}
+
+.city-glow {
+    position: absolute;
+    width: 100%;
+    height: 100%;
+    box-shadow: inset 0 0 200px rgba(0, 0, 0, 0.9);
+    pointer-events: none;
+}
+
+.particles {
+    position: absolute;
+    width: 100%;
+    height: 100%;
+}
+
+.particle {
+    position: absolute;
+    background: white;
+    border-radius: 50%;
+    opacity: 0.3;
+    filter: blur(1px);
+    animation: floatUp linear infinite;
+}
+
+@keyframes floatUp {
+    from { transform: translateY(100vh); }
+    to { transform: translateY(-10vh); }
+}
+
+/* --- TELA DE ABERTURA --- */
+.opening-screen {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: var(--bg-dark);
+    z-index: 3000;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    text-align: center;
+    transition: transform 1s cubic-bezier(0.85, 0, 0.15, 1), opacity 1s;
+}
+
+.opening-content h1 {
+    font-size: 6rem;
+    font-weight: 800;
+    line-height: 0.9;
+    margin-bottom: 2rem;
+    letter-spacing: -2px;
+}
+
+.opening-subtitle {
+    font-size: 1.2rem;
+    color: var(--text-dim);
+    margin-bottom: 3rem;
+    letter-spacing: 2px;
+}
+
+.btn-glow {
+    padding: 1.2rem 3rem;
+    font-size: 1rem;
+    font-weight: 600;
+    background: transparent;
+    color: white;
+    border: 2px solid var(--primary);
+    border-radius: 50px;
+    cursor: pointer;
+    transition: var(--transition);
+    box-shadow: 0 0 15px rgba(255, 204, 0, 0.3);
+}
+
+.btn-glow:hover {
+    background: var(--primary);
+    color: black;
+    box-shadow: 0 0 30px var(--primary);
+}
+
+.opening-cars {
+    position: absolute;
+    width: 100%;
+    height: 100%;
+    pointer-events: none;
+}
+
+.car-light {
+    position: absolute;
+    width: 200px;
+    height: 100px;
+    background: radial-gradient(circle, rgba(255,255,255,0.2) 0%, transparent 70%);
+    bottom: 10%;
+    filter: blur(20px);
+    animation: carPass 6s linear infinite;
+}
+
+.car-light.left { left: -200px; }
+.car-light.right { right: -200px; animation-direction: reverse; }
+
+@keyframes carPass {
+    to { transform: translateX(120vw); }
+}
+
+/* --- NAVEGAÇÃO --- */
+#main-nav {
+    position: fixed;
+    top: 0;
+    width: 100%;
+    padding: 1.5rem 5%;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    z-index: 1000;
+    transition: var(--transition);
+    background: rgba(5, 6, 10, 0.7);
+    backdrop-filter: blur(15px);
+    border-bottom: 1px solid var(--glass-border);
+}
+
+.nav-logo {
+    font-weight: 800;
+    font-size: 1.5rem;
+}
+
+.nav-logo .highlight {
+    color: var(--primary);
+}
+
+.nav-links {
+    display: flex;
+    list-style: none;
+    gap: 2rem;
+}
+
+.nav-item {
+    text-decoration: none;
+    color: var(--text-light);
+    font-size: 0.85rem;
+    font-weight: 600;
+    transition: var(--transition);
+    opacity: 0.6;
+}
+
+.nav-item:hover, .nav-item.active {
+    opacity: 1;
+    color: var(--primary);
+}
+
+#btn-accessibility {
+    background: transparent;
+    border: 1px solid var(--glass-border);
+    color: white;
+    padding: 0.5rem;
+    border-radius: 50%;
+    cursor: pointer;
+    transition: var(--transition);
+}
+
+#btn-accessibility:hover { background: var(--glass); }
+
+/* --- ÍNDICE DE GENTILEZA --- */
+.kindness-meter {
+    position: fixed;
+    top: 80px;
+    right: 20px;
+    width: 220px;
+    z-index: 900;
+    background: var(--glass);
+    backdrop-filter: blur(10px);
+    padding: 1rem;
+    border-radius: 15px;
+    border: 1px solid var(--glass-border);
+}
+
+.meter-info {
+    display: flex;
+    justify-content: space-between;
+    font-size: 0.7rem;
+    font-weight: 600;
+    margin-bottom: 0.5rem;
+}
+
+.meter-bar {
+    width: 100%;
+    height: 6px;
+    background: #222;
+    border-radius: 10px;
+    overflow: hidden;
+}
+
+#meter-fill {
+    width: 0%;
+    height: 100%;
+    background: linear-gradient(to right, var(--primary), var(--success));
+    transition: width 0.5s ease;
+}
+
+/* --- SEÇÕES GERAIS --- */
+.section {
+    min-height: 100vh;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: 100px 10%;
+    text-align: center;
+}
+
+.content-wrapper {
+    width: 100%;
+    max-width: 1200px;
+}
+
+.title-main {
+    font-size: 3.5rem;
+    font-weight: 800;
+    margin-bottom: 1.5rem;
+    letter-spacing: -1px;
+}
+
+.subtitle {
+    color: var(--text-dim);
+    margin-bottom: 3rem;
+}
+
+.glass {
+    background: var(--glass);
+    backdrop-filter: blur(15px);
+    border: 1px solid var(--glass-border);
+    border-radius: 24px;
+}
+
+/* --- GRUPO 1: PAINEL --- */
+.panel-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+    gap: 1.5rem;
+}
+
+.panel-card {
+    padding: 2rem;
+    cursor: pointer;
+    transition: var(--transition);
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 1rem;
+}
+
+.panel-card i {
+    font-size: 2.5rem;
+    color: var(--primary);
+}
+
+.panel-card:hover {
+    transform: translateY(-10px);
+    background: rgba(255, 255, 255, 0.08);
+    border-color: var(--primary);
+}
+
+.feedback-box {
+    margin-top: 2rem;
+    padding: 2rem;
+    max-width: 600px;
+    margin-left: auto;
+    margin-right: auto;
+    font-style: italic;
+    color: var(--primary);
+}
+
+/* --- GRUPO 2: IMERSÃO --- */
+.immersion-container {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 2rem;
+    padding: 2rem;
+    align-items: center;
+}
+
+.scenario-visual {
+    height: 400px;
+    background: #111;
+    border-radius: 20px;
+    position: relative;
+    overflow: hidden;
+    border: 2px solid var(--glass-border);
+}
+
+.city-scene {
+    width: 100%;
+    height: 100%;
+    position: relative;
+    background: linear-gradient(to bottom, #0a0b10 60%, #333 60%);
+}
+
+.scene-element {
+    position: absolute;
+    font-size: 4rem;
+    bottom: 20%;
+    left: 50%;
+    transform: translateX(-50%);
+    transition: all 1s ease;
+}
+
+.scenario-controls {
+    text-align: left;
+}
+
+.options-group {
+    display: flex;
+    gap: 1rem;
+    margin: 2rem 0;
+}
+
+.btn-option {
+    padding: 1rem 2rem;
+    border: none;
+    border-radius: 10px;
+    cursor: pointer;
+    font-weight: 600;
+    transition: var(--transition);
+}
+
+.btn-option.pos { background: var(--success); color: white; }
+.btn-option.neg { background: var(--danger); color: white; }
+.btn-option:hover { transform: scale(1.05); filter: brightness(1.2); }
+
+.result-box {
+    padding: 1rem;
+    background: var(--glass);
+    border-radius: 10px;
+    border-left: 4px solid var(--primary);
+}
+
+.btn-next {
+    margin-top: 1rem;
+    padding: 0.5rem 1.5rem;
+    background: var(--primary);
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    font-weight: 600;
+}
+
+/* --- GRUPO 3: ARTE --- */
+.art-gallery {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+    gap: 2rem;
+}
+
+.art-piece {
+    height: 400px;
+    position: relative;
+    overflow: hidden;
+    display: flex;
+    align-items: flex-end;
+    padding: 2rem;
+    transition: var(--transition);
+}
+
+.art-piece::before {
+    content: '';
+    position: absolute;
+    top: 0; left: 0; width: 100%; height: 100%;
+    background: linear-gradient(45deg, transparent, var(--accent));
+    opacity: 0.2;
+    transition: var(--transition);
+}
+
+.art-piece:hover {
+    transform: scale(1.02);
+    border-color: var(--accent);
+}
+
+.art-piece:hover::before { opacity: 0.5; }
+
+.art-content {
+    position: relative;
+    z-index: 2;
+}
+
+/* --- GRUPO 4: MURAL --- */
+.mural-input-area {
+    display: flex;
+    gap: 1rem;
+    padding: 1.5rem;
+    margin-bottom: 3rem;
+}
+
+.mural-input-area input {
+    flex: 1;
+    background: transparent;
+    border: 1px solid var(--glass-border);
+    padding: 1rem;
+    color: white;
+    border-radius: 10px;
+    outline: none;
+}
+
+.btn-primary {
+    padding: 1rem 2rem;
+    background: var(--primary);
+    border: none;
+    border-radius: 10px;
+    font-weight: 600;
+    cursor: pointer;
+}
+
+.mural-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+    gap: 1.5rem;
+}
+
+.mural-card {
+    padding: 1.5rem;
+    text-align: left;
+    animation: slideIn 0.5s ease-out;
+}
+
+@keyframes slideIn {
+    from { opacity: 0; transform: translateY(20px); }
+    to { opacity: 1; transform: translateY(0); }
+}
+
+/* --- GRUPO 5: SITE --- */
+.site-info-grid {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 2rem;
+    margin-bottom: 4rem;
+}
+
+.info-card {
+    padding: 2rem;
+    text-align: center;
+}
+
+.info-card i {
+    font-size: 3rem;
+    color: var(--primary);
+    margin-bottom: 1rem;
+}
+
+.groups-summary {
+    background: var(--glass);
+    padding: 3rem;
+    border-radius: 24px;
+}
+
+.groups-list {
+    display: flex;
+    justify-content: center;
+    gap: 2rem;
+    flex-wrap: wrap;
+    margin-top: 2rem;
+}
+
+.groups-list span {
+    padding: 0.8rem 1.5rem;
+    background: var(--glass-border);
+    border-radius: 50px;
+    font-size: 0.9rem;
+}
+
+/* --- AVALIAÇÃO --- */
+.star-rating {
+    font-size: 3rem;
+    cursor: pointer;
+    margin-bottom: 2rem;
+    display: flex;
+    justify-content: center;
+    gap: 1rem;
+}
+
+.star-rating i {
+    color: #333;
+    transition: var(--transition);
+}
+
+.star-rating i.active, .star-rating i:hover {
+    color: var(--primary);
+    text-shadow: 0 0 15px var(--primary);
+}
+
+/* --- FINAL --- */
+.title-final {
+    font-size: 5rem;
+    font-weight: 800;
+    margin-bottom: 2rem;
+}
+
+.final-text {
+    font-size: 2rem;
+    color: var(--text-dim);
+    margin-bottom: 3rem;
+    line-height: 1.5;
+}
+
+.final-cta {
+    font-size: 3rem;
+    color: var(--primary);
+    margin-bottom: 4rem;
+}
+
+/* --- UTILS --- */
+.hidden { display: none !important; }
+.reveal {
+    opacity: 0;
+    transform: translateY(40px);
+    transition: all 1s ease-out;
+}
+.reveal.visible {
+    opacity: 1;
+    transform: translateY(0);
+}
+
+/* --- ACESSIBILIDADE --- */
+body.accessible {
+    --primary: #ffea00;
+    --text-light: #ffffff;
+}
+body.accessible .reveal {
+    transition: none;
+    opacity: 1;
+    transform: none;
+}
+body.accessible * {
+    animation: none !important;
+}
+
+/* --- RESPONSIVIDADE --- */
+@media (max-width: 768px) {
+    .opening-content h1 { font-size: 3rem; }
+    .title-main { font-size: 2rem; }
+    .nav-links { display: none; }
+    .immersion-container { grid-template-columns: 1fr; }
+    .site-info-grid { grid-template-columns: 1fr; }
+}
