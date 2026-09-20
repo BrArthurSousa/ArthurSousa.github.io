@@ -1,0 +1,256 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Gentileza Gera Gentileza no Trânsito</title>
+    <!-- Ícones: Font Awesome -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <!-- Fonte: Poppins -->
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600;800&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+
+    <!-- Camada de Fundo Imersiva -->
+    <div class="city-background">
+        <div class="road-lines"></div>
+        <div class="city-glow"></div>
+        <div class="particles" id="particles"></div>
+    </div>
+
+    <!-- Tela de Abertura (Hero) -->
+    <div id="opening-screen" class="opening-screen">
+        <div class="opening-content">
+            <h1 class="glitch-text">GENTILEZA<br>GERA<br>GENTILEZA</h1>
+            <p class="opening-subtitle">"NO TRÂNSITO, CADA ATITUDE FAZ PARTE DO CAMINHO."</p>
+            <button id="btn-init" class="btn-glow">INICIAR EXPERIÊNCIA</button>
+        </div>
+        <div class="opening-cars">
+            <div class="car-light left"></div>
+            <div class="car-light right"></div>
+        </div>
+    </div>
+
+    <!-- Navegação Fixa -->
+    <nav id="main-nav" class="hidden">
+        <div class="nav-logo">G<span class="highlight">G</span></div>
+        <ul class="nav-links">
+            <li><a href="#inicio" class="nav-item">INÍCIO</a></li>
+            <li><a href="#painel" class="nav-item">PAINEL</a></li>
+            <li><a href="#imersao" class="nav-item">IMERSÃO</a></li>
+            <li><a href="#arte" class="nav-item">ARTE</a></li>
+            <li><a href="#site" class="nav-item">SITE</a></li>
+            <li><a href="#avaliacao" class="nav-item">AVALIAÇÃO</a></li>
+        </ul>
+        <button id="btn-accessibility" title="Modo Acessível"><i class="fas fa-universal-access"></i></button>
+    </nav>
+
+    <!-- Índice de Gentileza Global -->
+    <div id="kindness-meter" class="kindness-meter hidden">
+        <div class="meter-info">
+            <span>ÍNDICE DE GENTILEZA</span>
+            <span id="kindness-value">0%</span>
+        </div>
+        <div class="meter-bar">
+            <div id="meter-fill"></div>
+        </div>
+    </div>
+
+    <!-- CONTEÚDO PRINCIPAL -->
+    <main id="main-content" class="hidden">
+
+        <!-- SEÇÃO: INÍCIO -->
+        <section id="inicio" class="section">
+            <div class="content-wrapper reveal">
+                <h2 class="title-main">O Trânsito como Espaço de Paz</h2>
+                <p class="text-impact">"Chegar bem é mais importante do que chegar primeiro."</p>
+                <div class="chain-container">
+                    <div class="chain-item" data-step="1">GENTILEZA</div>
+                    <div class="chain-arrow">↓</div>
+                    <div class="chain-item" data-step="2">RESPEITO</div>
+                    <div class="chain-arrow">↓</div>
+                    <div class="chain-item" data-step="3">EMPATIA</div>
+                    <div class="chain-arrow">↓</div>
+                    <div class="chain-item" data-step="4">SEGURANÇA</div>
+                    <div class="chain-arrow">↓</div>
+                    <div class="chain-item" data-step="5">UM TRÂNSITO MELHOR</div>
+                </div>
+            </div>
+        </section>
+
+        <!-- GRUPO 1: PAINEL INTERATIVO -->
+        <section id="painel" class="section">
+            <div class="content-wrapper reveal">
+                <h2 class="title-main">Painel de Atitudes</h2>
+                <p class="subtitle">Clique nas ações para transformar o ambiente.</p>
+                <div class="panel-grid">
+                    <div class="panel-card glass" onclick="handleAttitude('passagem', 'Dar passagem leva alguns segundos, mas pode tornar o caminho de outra pessoa muito melhor.')">
+                        <i class="fas fa-car"></i>
+                        <span>Dar Passagem</span>
+                    </div>
+                    <div class="panel-card glass" onclick="handleAttitude('pedestre', 'O pedestre é a prioridade. Respeitar a faixa é um ato de humanidade.')">
+                        <i class="fas fa-walking"></i>
+                        <span>Respeitar Pedestre</span>
+                    </div>
+                    <div class="panel-card glass" onclick="handleAttitude('seta', 'A seta é sua voz no trânsito. Use-a para evitar surpresas.')">
+                        <i class="fas fa-arrow-right"></i>
+                        <span>Usar a Seta</span>
+                    </div>
+                    <div class="panel-card glass" onclick="handleAttitude('sinal', 'Respeitar a sinalização protege a você e a todos ao redor.')">
+                        <i class="fas fa-stop-circle"></i>
+                        <span>Sinalização</span>
+                    </div>
+                    <div class="panel-card glass" onclick="handleAttitude('distancia', 'Manter distância segura evita colisões em frenagens bruscas.')">
+                        <i class="fas fa-arrows-alt-h"></i>
+                        <span>Distância Segura</span>
+                    </div>
+                    <div class="panel-card glass" onclick="handleAttitude('paciencia', 'A paciência é o melhor combustível para um trânsito seguro.')">
+                        <i class="fas fa-om"></i>
+                        <span>Ter Paciência</span>
+                    </div>
+                    <div class="panel-card glass" onclick="handleAttitude('ciclista', 'Ciclistas são vulneráveis. Dê espaço e respeito.')">
+                        <i class="fas fa-bicycle"></i>
+                        <span>Respeitar Ciclistas</span>
+                    </div>
+                    <div class="panel-card glass" onclick="handleAttitude('celular', 'Um segundo no celular pode mudar uma vida para sempre. Desconecte-se.')">
+                        <i class="fas fa-mobile-alt"></i>
+                        <span>Sem Celular</span>
+                    </div>
+                </div>
+                <div id="attitude-feedback" class="feedback-box glass hidden">
+                    <p id="feedback-text"></p>
+                </div>
+            </div>
+        </section>
+
+        <!-- GRUPO 2: IMERSÃO -->
+        <section id="imersao" class="section">
+            <div class="content-wrapper reveal">
+                <h2 class="title-main">Experiência Imersiva</h2>
+                <div class="immersion-container glass">
+                    <div id="scenario-visual" class="scenario-visual">
+                        <div class="city-scene">
+                            <div id="scene-element" class="scene-element">🚶</div>
+                        </div>
+                    </div>
+                    <div class="scenario-controls">
+                        <p id="scenario-text">Um pedestre aguarda para atravessar a faixa.</p>
+                        <div class="options-group">
+                            <button id="opt-positive" class="btn-option pos">DAR PASSAGEM</button>
+                            <button id="opt-negative" class="btn-option neg">IGNORAR</button>
+                        </div>
+                        <div id="scenario-result" class="result-box hidden">
+                            <p id="result-text"></p>
+                            <button onclick="nextScenario()" class="btn-next">PRÓXIMA SITUAÇÃO</button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- GRUPO 3: ARTE -->
+        <section id="arte" class="section">
+            <div class="content-wrapper reveal">
+                <h2 class="title-main">Arte que Fala</h2>
+                <div class="art-gallery">
+                    <div class="art-piece glass" style="--accent: var(--primary)">
+                        <div class="art-content">
+                            <h3>Respeito</h3>
+                            <p>"Respeito também é uma forma de sinalização."</p>
+                        </div>
+                    </div>
+                    <div class="art-piece glass" style="--accent: var(--success)">
+                        <div class="art-content">
+                            <h3>Empatia</h3>
+                            <p>"Uma atitude pode mudar o caminho de alguém."</p>
+                        </div>
+                    </div>
+                    <div class="art-piece glass" style="--accent: var(--danger)">
+                        <div class="art-content">
+                            <h3>Paciência</h3>
+                            <p>"Chegar primeiro não é mais importante do que chegar bem."</p>
+                        </div>
+                    </div>
+                    <div class="art-piece glass" style="--accent: #00d4ff">
+                        <div class="art-content">
+                            <h3>Segurança</h3>
+                            <p>"Sua vida e a do outro valem mais que qualquer pressa."</p>
+                        </div>
+                    </div>
+                    <div class="art-piece glass" style="--accent: #ff00ff">
+                        <div class="art-content">
+                            <h3>Cooperação</h3>
+                            <p>"Dar passagem também é chegar junto."</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- GRUPO 5: SITE -->
+        <section id="site" class="section">
+            <div class="content-wrapper reveal">
+                <h2 class="title-main">Sobre o Site</h2>
+                <div class="site-info-grid">
+                    <div class="info-card glass">
+                        <i class="fab fa-html5"></i>
+                        <h3>HTML</h3>
+                        <p>A fundação estrutural que organiza a experiência e garante a acessibilidade.</p>
+                    </div>
+                    <div class="info-card glass">
+                        <i class="fab fa-css3-alt"></i>
+                        <h3>CSS</h3>
+                        <p>Responsável pela atmosfera noturna, animações cinematográficas e design moderno.</p>
+                    </div>
+                    <div class="info-card glass">
+                        <i class="fab fa-js"></i>
+                        <h3>JavaScript</h3>
+                        <p>O motor que processa as interações, o índice de gentileza e a imersão dinâmica.</p>
+                    </div>
+                </div>
+                <div class="groups-summary">
+                    <h3>Estrutura do Trabalho</h3>
+                    <div class="groups-list">
+                        <span>1. Painel Interativo</span>
+                        <span>2. Imersão</span>
+                        <span>3. Arte</span>
+                        <span>4. Site</span>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- AVALIAÇÃO DA SALA -->
+        <section id="avaliacao" class="section">
+            <div class="content-wrapper reveal">
+                <h2 class="title-main">Avaliação da Experiência</h2>
+                <p class="subtitle">Como você avalia a nossa apresentação sobre Gentileza gera Gentileza no Trânsito?</p>
+                <div class="star-rating" id="star-rating">
+                    <i class="fas fa-star" data-value="1"></i>
+                    <i class="fas fa-star" data-value="2"></i>
+                    <i class="fas fa-star" data-value="3"></i>
+                    <i class="fas fa-star" data-value="4"></i>
+                    <i class="fas fa-star" data-value="5"></i>
+                </div>
+                <div id="rating-feedback" class="feedback-box glass hidden">
+                    <p id="rating-text"></p>
+                </div>
+            </div>
+        </section>
+
+        <!-- TELA FINAL -->
+        <section id="final" class="section">
+            <div class="content-wrapper reveal">
+                <h1 class="title-final">GENTILEZA GERA GENTILEZA.</h1>
+                <p class="final-text">NO TRÂNSITO. <br> NA RUA. <br> NA VIDA.</p>
+                <h2 class="final-cta">COMECE POR VOCÊ.</h2>
+                <button onclick="window.scrollTo({top: 0, behavior: 'smooth'})" class="btn-primary">VOLTAR AO INÍCIO</button>
+            </div>
+        </section>
+
+    </main>
+
+    <script src="script.js"></script>
+</body>
+</html>
